@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ops_employee_deductions_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+        
+                <!-- custom header -->
+                <div class="header">
+                    <div class="row">
+                        <div class="col-12 mb4" style="margin-top:20px; width:100%;">
+                            <img class="img img-responsive" t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" width="180" height="100" alt="Logo" style="float:right;"/>                      
+                        </div>
+                    </div>
+                </div>
+
+                <t t-call="web.external_layout">
+                    <!-- <div class="page" style="font-family: 'Poppins', sans-serif;"> -->
+                    <div class="page" style="font-family: 'Poppins', sans-serif; line-height:250%; margin-right: 35px; margin-left: 35px;">
+
+                        <h2 style="text-align: center; font-size:32px;">
+                            <a style="color: black;"><span>CONSTANCIA LABORAL</span></a>
+                        </h2>
+
+                        <br/> 
+                        <p style="text-align: left; font-size:20px;">
+                            <strong>A quien Interese:</strong>
+                        </p>
+                        
+                        <!--Parrafo principal-->                    
+                        <p style="text-align: justify; font-size:20px;">
+                           OPS CONTACT CENTER por este medio hace constar que:&#160;&#160;<strong><span t-field="o.employee_id.name"/></strong>, <t t-if ="o.state == 'close' or o.state == 'cancel'">laboró </t><t t-if="o.state == 'open' or o.state == 'draff' or o.state == 'pending'">labora </t>para la empresa desde el&#160;<span t-field="o.date_start"/>&#160;hasta&#160;<t t-if ="o.state == 'close' or o.state == 'cancel'"> el&#160; <span t-field="o.date_end"/></t><t t-if="o.state == 'open' or o.state == 'draff' or o.state == 'pending'">actualmente</t>, desempeñando el cargo de&#160;<strong><span t-field="o.job_id.name"/></strong>, en el departamento de&#160;<span t-field="o.department_id.name"/>,para los fines que se estimen convenientes se le brinda la siguiente información.
+                        </p>
+
+                        <!-- Detalle deducciones -->
+                        <t t-set="total" t-value="0" />
+                        <t t-set="total_salary" t-value="0" />
+                        <table style="font-size:20px; border-spacing:0; padding:0px; color: black;">
+                            <thead>
+                                <!-- Si no existe ninguna deduccion -->
+                                <t t-if="not o.employee_id.slip_ids">
+                                    <tr>
+                                        <td style="width:10%;"></td>
+                                        <td><a style="color: black;">IHSS</a></td>
+                                        <td style="with:10%"></td>
+                                        <td></td>
+                                        <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:10%;"></td>
+                                        <td><a style="color: black;">RAP</a></td>
+                                        <td style="with:10%"></td>
+                                        <td></td>
+                                        <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:10%;"></td>
+                                        <td><a style="color: black;">ISR</a></td>
+                                        <td style="with:10%"></td>
+                                        <td></td>
+                                        <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:10%;"></td>
+                                        <td><a style="color: black;">Total deducciones</a></td>
+                                        <td style="with:10%"></td>
+                                        <td></td>
+                                        <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="width:10%;"></td>
+                                        <td><a style="color: black;"><strong>Salario Neto</strong></a></td>
+                                        <td style="with:10%"></td>
+                                        <td></td>
+                                        <td style="text-align:right"><a style="color: black; width:30%;">L. <strong><span t-esc="'{0:,.2f}'.format(float(o.wage))" t-field-options="{widget:False}"/></strong></a></td>
+                                    </tr>
+                                </t>
+
+                                <t t-set="line_ids_sorted" t-value="o.employee_id.slip_ids.sorted(key=lambda a:(a.create_date),reverse=True)"/>
+                                <t t-foreach='line_ids_sorted[:1]' t-as='line'>
+
+                                    <!-- Si no existe ninguna deduccion -->
+                                    <t t-if="not line.line_ids">
+                                        <tr>
+                                            <td style="width:10%;"></td>
+                                            <td><a style="color: black;">IHSS</a></td>
+                                            <td style="with:10%"></td>
+                                            <td></td>
+                                            <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%;"></td>
+                                            <td><a style="color: black;">RAP</a></td>
+                                            <td style="with:10%"></td>
+                                            <td></td>
+                                            <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%;"></td>
+                                            <td><a style="color: black;">ISR</a></td>
+                                            <td style="with:10%"></td>
+                                            <td></td>
+                                            <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:10%;"></td>
+                                            <td><a style="color: black;">Total deducciones</a></td>
+                                            <td style="with:10%"></td>
+                                            <td></td>
+                                            <td style="text-align:right"><a style="color: black; width:30%;">L. 0.00</a></td>
+                                        </tr>
+                                    </t>
+
+                                    <!-- Si hay deducciones -->
+                                    <t t-foreach='line.line_ids' t-as='row'>
+                                        <t t-if="row.code == 'IHSS' or row.code == 'RAP' or row.code == 'ISR'">
+                                            <tr>
+                                                <td style="width:10%;"></td>
+                                                <td><a style="color: black;"><span t-field="row.name"/></a></td>
+                                                <td style="with:10%"></td>
+                                                <td></td>
+                                                <td style="text-align:right"><a style="color: black; width:30%;">L. <span t-field="row.total"/></a></td>
+                                                <t t-set="total" t-value="total + row.total"/>
+                                            </tr>
+                                        </t>
+
+                                        <t t-if="row.code == 'TOTAL_DEDU'">
+                                            <t t-set="total" t-value="row.total"/>
+                                        </t>   
+                                    </t>
+
+                                    <!-- linea de total dedudcciones -->
+                                    <t t-foreach='line.line_ids' t-as='total_deducciones'>
+                                        <t t-if="total_deducciones.code == 'TOTAL_DEDU'">
+                                            <tr>
+                                                <td style="width:10%;"></td>
+                                                <td><a style="color: black;"><span t-field="total_deducciones.name"/></a></td>
+                                                <td style="with:10%"></td>
+                                                <td></td>
+                                                <td style="text-align:right"><a style="color: black; width:30%;">L. <span t-field="total_deducciones.total"/></a></td>
+                                            </tr>
+                                        </t>
+                                    </t>
+                                    
+                                    <tr>
+                                        <t t-set="total_salary" t-value="o.wage-total"/>
+                                        <td></td>
+                                        <td><a style="color: black;">Salario Neto recibido: </a></td>
+                                        <td colspan="1" style="width:10%;"></td>
+                                        <td></td>
+                                        <td align="left"><a style="color: black; border-top-color:black; border-top-style:solid; border-top-width:1px; text-align: left; width:30%;">L. <span t-esc="'{0:,.2f}'.format(int(total_salary))"/></a></td>
+                                    </tr>
+                                </t>
+                                
+                            </thead>
+                        </table>
+                        <br/>
+
+                        <!-- parrafo secundario -->
+                        <p style="text-align: justify; font-size:20px;">
+                            Y para los usos que el interesado estime conveniente se extiende la presente en Tegucigalpa, a los&#160;<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d')"/> días del mes de <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%B')"/> del <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>.
+                        </p>
+                        <p style="text-align: justify; font-size:25px;">Atentamente.</p>
+
+                        <br/>
+                     
+                        <!-- Firma de RRHH -->
+                        <div style="text-align:center; font-size:20px;">
+                            <p>___________________________________<br/><strong>Lic. Josue Dario Andino<br/>Contador General<br/>Ext. 2283-60-65/3340-2345<br/>Ext. 1135</strong></p>
+                        </div>    
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <report 
+        id="ops_employee_deductions_details_print_confi"
+        model="hr.contract"
+        string="Constancia Deducciones Empleado"
+        name="contrato_generacion_ops.ops_employee_deductions_details"
+        report_type="qweb-pdf"
+    />
+        
+</odoo>

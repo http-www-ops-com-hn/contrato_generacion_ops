@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="ops_employee_contract_details">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+        
+                <!-- custom header -->
+                <div class="header">
+                    <div class="row">
+                        <div class="col-12 mb4" style="margin-top:20px; width:100%;">
+                            <img class="img img-responsive" t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" width="180" height="100" alt="Logo" style="float:right;"/>                      
+                        </div>
+                    </div>
+                </div>
+
+                <t t-call="web.external_layout">
+                    <!-- <div class="page" style="font-family: 'Poppins', sans-serif;"> -->
+                    <div class="page" style="font-family: 'Poppins', sans-serif; line-height:250%; margin-right: 35px; margin-left: 35px;">
+
+                        <br/>
+                        <br/>
+                        <h2 style="text-align: center; font-size:32px;">
+                            <a style="color: black;"><span>CONSTANCIA LABORAL</span></a>
+                        </h2>
+                        <br/> 
+
+                        <br/> 
+                        <p style="text-align: left; font-size:20px;">
+                            A quien Interese:
+                        </p>
+                        <br/>
+                        <br/>
+
+                        <!--Parrafo principal-->                    
+                        <p style="text-align: justify; font-size:20px;">
+                            Por medio de la presente hacemos constar que:&#160; <span t-field="o.employee_id.name"/>, con número de identidad&#160; <span t-field="o.employee_id.identification_id"/>, <t t-if ="o.state == 'close' or o.state == 'cancel'">laboró </t><t t-if="o.state == 'open' or o.state == 'draff' or o.state == 'pending'">labora </t>para la empresa <strong>OPS Contact Center</strong>, desde el&#160;<span t-field="o.date_start"/> hasta&#160;<t t-if ="o.state == 'close' or o.state == 'cancel'"> el&#160; <span t-field="o.date_end"/></t><t t-if="o.state == 'open' or o.state == 'draff' or o.state == 'pending'">actualmente</t>, desempeñando el cargo de&#160; <span t-field="o.job_id.name"/>.
+                        </p>
+
+                        <!-- parrafo secundario -->
+                        <p style="text-align: justify; font-size:20px;">
+                            Y para los usos que el interesado estime conveniente se extiende la presente en Tegucigalpa, a los&#160;<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d')"/> días del mes de <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%B')"/> del <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>.
+                        </p>
+
+                        <br/>
+                        <br/>
+                        <br/>
+                      
+                        <!-- Firma de RRHH -->
+                        <div style="text-align:center; font-size:20px;">
+                            <p>___________________________________<br/><strong>Ana Greisson<br/>Recursos Humanos<br/>Ext. 2283-60-65/3164-0619<br/>Ext. 1103</strong></p>
+                        </div>    
+                    </div>
+
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="ops_external_layout_header" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@class='footer o_standard_footer']" position="replace">
+
+        </xpath>
+    </template>
+
+    <report 
+        id="ops_employee_contract_details_print_confi"
+        model="hr.contract"
+        string="Constancia Empleado"
+        name="contrato_generacion_ops.ops_employee_contract_details"
+        report_type="qweb-pdf"
+    />
+
+</odoo>

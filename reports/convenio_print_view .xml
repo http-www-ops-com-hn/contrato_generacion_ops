@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<template id="convenio_print_view_document_confi">
+    <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+            <!-- custom header -->
+            <div class="header">
+                <div class="row">
+                    <div class="col-12 mb4" style="margin-top:20px; width:100%;">
+                        <img class="img img-responsive" t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" width="180" height="100" alt="Logo" style="float:right;"/>                 
+                    </div>
+                </div>
+            </div>
+
+            <t t-call="web.external_layout">
+                <!-- pagina principal  -->
+                <div class="page">  
+                      
+                    <br/>  
+                    <br/> 
+                    <h2 style="text-align: center;">
+                        <span>CARTA COMPROMISO DE CONFIDENCIALIDAD Y CUMPLIMIENTO CÓDIGO DE ÉTICA</span>
+                    </h2>
+                    <br/>  
+                    <br/>
+                    <br/>  
+                    <br/>      
+
+                    <!--PARRAFO COMPLETO-->                    
+                    <p style="text-align: justify;" >
+                        Yo ____________________________________________________________, en mi condición de colaborador de OPS Contact Center, me comprometo a mantener de manera confidencial la información a la que tenga acceso y reciba, así como los productos, tecnología, métodos, procesos, manuales administrativos, operaciones, proyecciones, resultados y prospectos, programas de computación y practicas exclusivas de la empresa de cualquier filial de ella,  los asuntos administrativos y planes de negocio de carácter reservados y/o confidenciales, entendiendo que me está prohibido, así mismo, externar cualquier información sobre los clientes de la misma.
+                    </p>
+                    <br/>    
+                    
+                    <p style="text-align: justify;">
+                        Así también confirmo que he sido capacitado y tengo conocimiento de lo expresado en el CÓDIGO DE ÉTICA de la empresa. Comprendo que soy responsable de cumplirlo y hacer que se cumpla, y que soy responsable de reportar cualquier falta de los temas aquí mencionados a las autoridades designada para este fin.
+                    </p>
+                    <br/>  
+                    
+
+                    <p style="text-align: justify;">
+                        Estoy consciente que el revelar cualquier información confidencial, puedo ser sancionado según el Código de Trabajo y Reglamento Interno y por las leyes laborales y penales que así correspondan. 
+                    </p>
+                    <br/>  
+
+                    <p style="text-align: justify;">
+                        Desligo a OPS Contact Center de cualquier responsabilidad a consecuencia de la falta de cumplimiento de la presente carta.
+                    </p>
+                    <br/>  
+                    <br/>
+                    <br/>  
+
+                    <p style="text-align: left;">
+                        PUESTO DE TRABAJO:&#160;_____________________________________
+                    </p>
+                    <p style="text-align: left;">
+                        Nº DE IDENTIDAD:&#160;&#160;&#160;_____________________________________
+                    </p>
+                    <p style="text-align: left;">
+                        FIRMA COLABORADOR:&#160;_____________________________________
+                    </p>
+
+                </div> <!--ULTIMO DIV PAGE-->
+
+                <!-- custom footer -->
+                <div class="footer" style="margin-bottom: 8px;">
+                    <div class="row" style="font-size:11px; text-align: center;">
+                        <div class="col-xs-12" style="width:100%;">
+                            <p style="color: black;">
+                                Outsourcing Partner Solutions, Edificio CH Inversiones, 5to y 6to Nivel. Blvd Suyapa, Tegucigalpa, Honduras<br/>Teléfono (504) 2275-1310 www.ops.com.hn
+                            </p>
+                        </div>
+                        <!-- <div class="col-xs-8" style="width:70%; height: 200px;">
+                            <img src="/contrato_generacion_guip2020/static/img/footer_constancia.png" alt="Logo" width="400" height="150" style="float:right;"/>
+                        </div> -->
+                    </div>
+                </div>
+            </t>
+        </t>
+    </t>
+</template>
+</odoo>

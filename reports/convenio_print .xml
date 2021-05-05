@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report 
+        id="convenio_contract_print_confi"
+        model="hr.contract"
+        string="Carta Compromiso"
+        name="contrato_generacion_ops.convenio_print_view_document_confi"
+        report_type="qweb-pdf"
+        />
+</odoo>
+

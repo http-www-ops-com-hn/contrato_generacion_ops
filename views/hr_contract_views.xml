@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="ops_hr_contract_form_inherit" model="ir.ui.view">
+            <field name="name">ops_hr_contract.form.inherit</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                <field name="job_id" position="after">
+                    <field name = "text_titulo"/>
+                    <field name = "text_ciudad"/>
+                    <field name = "txt_gerencia"/>
+                    
+                    <!-- <field name = "hora_contractual"/> -->
+
+                </field>
+                <field name="reported_to_secretariat" position="after">
+                    <field name = "employee_address2"/>
+                    <field name = "date_of_birth"/>
+                    <field name = "age" force_save="1"/>
+                    
+                </field>
+                <field name="trial_date_end" position="before">
+                    <field name = "duracion"/>
+                </field>
+
+
+            </field>
+        </record>
+    </data>
+</odoo>

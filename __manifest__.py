@@ -16,15 +16,18 @@
     'data': [
         "reports/convenio_print .xml",
         "reports/convenio_print_view .xml",
-        "views/contrato_add.xml",
 
         #Nuevas constancias
         "reports/constancia_empleado_view.xml",
         "reports/constancia_salario_empleado_view.xml",
-        "reports/constancia_deducciones_empleado_view.xml"
+        "reports/constancia_deducciones_empleado_view.xml",
+
+        #convenio
+        "reports/contrato_por_hora.xml",
+        "views/hr_contract_views.xml",
 
     ],
-    'depends': ['hr','hr_contract', 'hr_payroll'],
+    'depends': ['hr','hr_contract','hr_payroll'],
     'installable': True,
     'auto_install': False,
     'application': True,

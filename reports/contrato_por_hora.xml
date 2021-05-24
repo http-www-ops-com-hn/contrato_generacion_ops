@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="contrato_por_hora_view">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <!-- custom header -->
+                    <div class="header">
+                        <div class="row">
+                            <div class="col-12 mb1" style="margin-top:8px; width:100%; margin-bottom: 2px !important">
+                                <img class="img img-responsive" t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" width="180" height="100" alt="Logo" style="float:right;"/>                 
+                            </div>
+                        </div>
+                    </div>
+
+                    <t t-call="web.external_layout">
+                        <!-- pagina principal  -->
+                        <div class="page">  
+                            <p style="text-align: center; font-size:15px; margin-top: 1px !important" >
+                                SECRETARIA DE TRABAJO Y SEGURIDAD SOCIAL<br/>
+                                DIRECCION GENERAL DE EMPLEO<br/>
+                                EMPLEO POR HORA<br/>
+                            </p>
+
+                            <!--PARRAFO COMPLETO-->                    
+                            <p style="text-align: center; font-size:15px;" >
+                                REGISTRO DE CONTRATO DE TRABAJO                        
+                            </p>
+
+                            <div style="border:1px solid black;">
+                                <p style="text-align: center;">FEPH-2</p>
+                                <p>
+                                &#160;&#160;&#160;Código de la Empresa: 0801 -EPH- 0056<br/>
+                                &#160;&#160;&#160;RTN: _____________________<br/>
+                                &#160;&#160;&#160;Código de Contrato: 0801  -EPH-___________________<br/>
+                                &#160;&#160;&#160;Fecha de Registro: Día&#160;<span t-esc="o.create_date.strftime('%d')"/>&#160;Mes&#160;<span t-esc="o.create_date.strftime('%m')"/>&#160;Año&#160;<span t-esc="o.create_date.strftime('%Y')"/>
+                                <div style="text-align: center;">
+                                ----------------------------Para uso exclusivo de Empleo por Hora, no llenar.--------------------------
+                                </div>
+                                </p>
+                            </div>
+                            <br/>
+                            <p style="text-align: justify;" >
+                                Lugar de Solicitud:&#160;<strong>Tegucigalpa</strong>&#160;&#160;Departamento:&#160;<strong>Francisco Morazán</strong>&#160;&#160;Municipio:&#160;<strong>Distrito Central</strong>                        
+                            </p>    
+                            <p style="text-align: justify;" >
+                                <table style="border-spacing: 20px;">
+                                    <tr>
+                                        <td colspan="12" height="1">1.	Nombre del Trabajador: <strong><span t-esc="o.employee_id.name"/></strong></td>
+                                        <!-- <td colspan="2" height="1"></td> -->
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="2" height="1">2. ID. No. <strong><span t-esc="o.employee_id.identification_id"/></strong></td>
+                                        <!-- <td colspan="2"><strong>«IDENTIDAD»</strong></td> -->
+                                        <td colspan="2" height="1">3.Teléfono No. : <span t-esc="o.employee_id.mobile_phone"/></td>
+                                        <!-- <td colspan="2" height="1">2283-6060</td> -->
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="2" height="1">4. Dirección: <strong><span t-esc="o.employee_address2"/></strong></td>
+                                        <!-- <td colspan="2" height="1"> <strong>«DOMICILIO»</strong></td> -->
+                                        <td colspan="2" height="1">5. Edad: <strong><span t-esc="o.age"/>&#160;Años</strong></td>
+                                        <!-- <strong><span t-esc="amount_to_text(o.employee_id.birthday)"/></strong> -->
+                                        <!-- <td colspan="2" height="1"><strong>«EDAD_LETRAS»</strong></td> -->
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="2"  height="1">
+                                            6. Estado Civil:&#160;1) Unión Libre<br/>  
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                            2)  Casado (a)<br/>
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;  
+                                            3)  Viudo (a)<br/>
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; 
+                                            4) Divorciado (a)<br/>  
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                            5) Separado (a)<br/>  
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                            6) Soltero (a)
+                                        </td>
+                                        <!-- <td colspan="1"  height="1"> 
+                                            
+                                        </td> -->
+                                        <!-- <td colspan="2" >&#160;</td> -->
+                                        <td colspan="3">
+                                            7. Sexo:&#160;1) Hombre<br/>       
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                            2) Mujer<br/>
+                                        </td>
+                                        <!-- <td colspan="1" > 
+                                            1) Hombre<br/>       
+                                            2) Mujer<br/>
+                                        </td> -->
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">8. Profesión u Oficio: <strong><span t-esc="o.text_titulo"/></strong></td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">9. Cargo o Puesto de Trabajo: <strong><span t-esc="o.job_id.name"/></strong></td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">10. Lugar de Prestación del Servicio: OPS CONTACT CENTER, OFICINAS CENTRALES</td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">11. Fecha de Inicio del Contrato:     Día: <strong><span t-esc="o.date_start"/></strong></td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">12. Finalización del Contrato:        Día: <strong><span t-esc="o.date_end"/></strong>  </td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">13. Horas Establecidas en el Contrato:&#160;<strong> 0<span t-esc="o.hora_contractual"/> horas</strong></td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="1" height="1">14. Jornada de Trabajo:1) Jornada Diurna<br/> 
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                             2) Jornada Nocturna <br/> 
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                             3) Mixta <br/> 
+                                            &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                             4) Horas
+                                        </td>
+                                        <!-- <td colspan="1" height="1"> 1) Jornada Diurna<br/> 
+                                                                    2) Jornada Nocturna <br/> 
+                                                                    3) Mixta <br/> 
+                                                                    4) Horas
+                                        </td> -->
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">15. Salario por Hora en Lempiras:&#160;0063&#160;&#160;&#160;01</td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="1" height="100">16. Modalidades de Contratación:</td>
+                                        <td colspan="1" height="100"> 1) Por Tiempo Limitado<br/> 
+                                                                    2) Jornada Nocturna <br/> 
+                                                                    3) Por Servicios Determinados <br/> 
+                                                                    4) Otros _________________________
+                    
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">17. Metas de Producción Pactadas: ___________________________________</td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="1">18. Tipo de Mano de Obra:</td>
+                                        <td colspan="1" >1) Calificada<br/>
+                                                        2) No Calificada
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="8" height="1">19. Acreditación de Grupos Vulnerables:</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;1)	Tercera edad………………………………………………………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;2)	Personal con discapacidad………………………………………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;3)	Jóvenes expuestos a riesgos de Migración/Deportados………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;4)	Jóvenes egresados de Procesos de reeducación por infringir la Ley…………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;5)	Jóvenes rehabilitados del consume de drogas y alcohol………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;6)	Jóvenes que han abandonado las maras o andillas……………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;7)	Veteranos de Guerra………………………………………………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;8)	Jubilados que reciben presiones inferiores al salario mínimo…………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="8" height="1">
+                                            &#160;&#160;&#160;&#160;9)	Ninguno………………………………………………………………………………………………
+                                        </td>
+                                        <td colspan="1" height="1">
+                                            <div style="width:30px;height:15px;border:1px solid #000;">&#160;</div>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;"></tr>
+                                    <tr>
+                                        <td colspan="12" height="1">20. Documentos Acreditados</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="12" height="1">
+                                        &#160;&#160;&#160;&#160;&#160;1)	Fotocopia del Contrato<br/>
+                                        &#160;&#160;&#160;&#160;&#160;2)	Fotocopia de la Identidad del Trabajador<br/>
+                                        &#160;&#160;&#160;&#160;&#160;3)	Permiso de Trabajo para Menores  (Si Aplica)<br/>
+                                        &#160;&#160;&#160;&#160;&#160;4)	Constancia que pertenece a un Grupo Vulnerable (Si Aplica)<br/>
+                                        &#160;&#160;&#160;&#160;&#160;5)	Constancia que es Estudiante o Diploma de Capacitación.<br/></td>
+                                    </tr>
+
+                                </table>
+
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <br/>
+                                <div style="text-align: center;">
+						          ___________________________________________________________<br/>
+                                    Firma y Sello del Propietario ò Representante Legal<br/>
+                                    De la Unidad Productiva o de Servicio<br/>
+                                </div>
+
+                            </p>      
+                            <text style="text-align: justify; page-break-after:always;">
+                                <div style="text-align: center;">OPS CONTACT CENTER 
+                                CONTRATO DE TRABAJO POR HORAS</div>
+                                <br/>
+                                </text>
+                                <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                          
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important">Por una parte: <strong>CRISTIE YASMIN VILLANUEVA ORDOÑEZ</strong>&#160;&#160;&#160;&#160;&#160;, mayor de edad, casada, Licenciada en Psicología Industrial, hondureña con tarjeta de identidad 0801-1987-06383 y de este domicilio. Actuando en nombre de la sociedad Mercantil <strong>OPS CONTACT CENTER</strong>. en la condición de Jefa del Departamento de Recursos Humanos de la misma, con oficinas en Boulevard Suyapa, Edificio CH Inversiones sexto nivel, Tegucigalpa, M.D.C, departamento de Francisco Morazán, quien en lo sucesivo&#160;&#160;&#160;  y para los efectos del presente contrato se denominara<strong> “EL EMPLEADOR”</strong>.- Y, Por la otra parte: <strong><span t-esc="o.employee_id.name"/></strong> de <strong><span t-esc="o.age"/>&#160;Años</strong> de edad, <strong><span t-esc="o.job_id.name"/></strong> con estado civil <strong><span t-field="o.employee_id.marital"/></strong> de nacionalidad hondureña, con tarjeta de identidad No <strong><span t-esc="o.employee_id.identification_id"/></strong> y con domicilio en colonia <strong><span t-esc="o.employee_address2"/></strong>, quien en lo sucesivo y para los efectos del presente contrato se denominara <strong>"EL TRABAJADOR"</strong>; hemos convenido en celebrar el presente <strong>CONTRATO DE TRABAJO POR HORAS Y POR TIEMPO LIMITADO</strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;, al amparo del <strong>Decreto legislativo No 354-2013</strong>, que contiene la <strong>Ley de Empleo por Hora</strong>, que se regirá por las clausulas y estipulaciones siguientes:<br/>
+                            
+                            </p>
+                            <br/>
+                            <br/>
+                    
+                            
+                            <p class = "justify" style="text-align: justify; margin-right:  15px; !important">
+                                <a><strong>CLAUSULA PRIMERA: </strong></a>
+                                 Por el presente contrato: EL TRABAJADOR (A) se obliga a prestar sus servicios a EL EMPLEADOR&#160;, desempeñando el cargo, puesto o actividad de: 
+                                <t t-if="o.hora_contractual == '4'">
+                                <!-- Contrato de 4 horas. -->
+                                <t t-if="o.job_id.name == 'GESTOR DE COBRO DOMICILIARIO'">
+                                <strong>GESTOR DE COBRO DOMICILIARIO</strong>, debiendo ejecutar todas aquellas tareas necesarias, inherentes y concomitantes para el desarrollo de las actividades que se le asigne por parte de la empresa, para lo cual deberá atender las instrucciones que se le impartan relacionadas con el cargo para el cual se contrata.
+                                </t>
+                                <!-- Contrato de 4 horas. -->
+                                <t t-if="o.job_id.name == 'ASEO'">
+                                Aseo de Oficinas y Baños, así como atender al personal de Visita.
+                                </t>
+                                </t>  
+                                <t t-if="o.hora_contractual == '6'">
+                                <!-- Contrato de 6 horas. -->
+                                <t t-if="o.job_id.name == 'GESTOR DE VENTA'">
+                                <strong>Gestor de Ventas,</strong> para el cual deberá de realizar las actividades de: LLAMADAS TELEFONICAS POR SERVICIO DE COBRANZA Y ATENCION AL CLIENTE.
+                                </t> 
+                                </t>                             
+                                <!-- para el cual deberá de realizar las actividades de: LLAMADAS TELEFONICAS POR SERVICIO DE COBRANZA Y ATENCION AL CLIENTE. -->
+                        
+                            
+                            <br/> 
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA SEGUNDA:</b>
+                             El presente contrato es: <strong>POR TIEMPO LIMITADO</strong>.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA TERCERA:</b>
+                             El presente contrato tendrá una duración de <strong><span t-field="o.duracion" /></strong> dando inicio el <strong><span t-esc="o.date_start"/></strong> y terminando el <strong><span t-esc="o.date_end"/></strong>.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA CUARTA:</b>
+                             EL TRABAJADOR se obliga a prestar sus servicios en OFICINAS CENTRALES DE OPS CONTACT      &#160;&#160; CENTER S.A pudiendo desplazarse y/o trasladarse a otros centros de trabajo de la misma empresa o en distinta ubicación dentro del Distrito Central donde EL EMPLEADOR convenga con terceros/clientes prestar sus servicios. La negativa de EL TRABAJADOR para prestar sus servicios o desempeñar sus funciones al tenor de esta cláusula es suficiente causal para su despido sin responsabilidad de EL EMPLEADOR. 
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA QUINTA:&#160;&#160;&#160;   </b>
+                               EL TRABAJADOR prestara sus servicios durante la jornada ordinaria&#160;DIURNA; en un horario de tra-&#160;&#160;    bajo rotativo según lo indique el patrono
+                            y de acuerdo a los requerimientos del proyecto al que este asignado. Trabajando 
+                            <!-- Contrato de 4 horas. -->
+                                <t t-if="o.hora_contractual == '4'">
+                                cuatro
+                                </t>
+                                <!-- Contrato de  6horas. -->
+                                <t t-if="o.hora_contractual == '6'">
+                                seis
+                                </t>
+                                horas, comprendidas en el horario de 8:00 a.m. a 6:00 pm. De lunes a viernes, y de igual forma los días sábados.
+                                El trabajo que exceda de la jornada ordinaria antes indicada o de la jornada máxima legal, se considerara extraordinario o de horas extras y se pagara de acuerdo a lo dispuesto en el Código de Trabajo.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA SEXTA:&#160;&#160;&#160; </b>
+                             En contraprestación a los servicios del TRABAJADOR,&#160;el EMPLEADOR se obliga a pagarle en concepto de <b>salario base</b> la cantidad de CINCUENTA Y DOS LEMPIRAS CON CINCUENTA Y UN CENTAVOS (L.52.51)&#160;por&#160;hora,&#160;&#160;&#160;&#160;&#160;&#160;  &#160;&#160;el&#160; cual será pagado en LAS INSTALACIONES DE RESUELVA DE HONDURASy en forma&#160;QUINCENAL a más tardar el día QUINCE (15) y TREINTA (30) DE CADA MES.
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA SEPTIMA:&#160;&#160;&#160;   </b>
+                              EL EMPLEADOR conviene en pagar&#160;al TRABAJADOR el salario base, más los derechos adqui-&#160; &#160; &#160; ridos que corresponden al décimo tercero y décimo cuarto mes de salario equivalentes a un dieciséis por ciento (16%) .sobre el salario base convenido y una compensación no habitual equivalente al cuatro
+                            por ciento (4%) sobre el salario base convenido, valor que equivale al pago de auxilio
+                            de cesantía, derecho del cual no gozan los trabajadores acogidos al presente régimen. 
+                            Esta compensación no habitual será pagada en la misma fecha, frecuencia y modalidad 
+                            en que se pague el Salario Base y la misma no constituye salario.</p>
+                        
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA OCTAVA:&#160;&#160;    </b>
+                            EL EMPLEADOR se obliga a facilitar al TRABAJADOR, los materiales necesarios para que desarrolle sus actividades.
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA NOVENA:</b>
+                              EL TRABAJADOR tendrá derecho a disfrutar de un día de vacaciones remuneradas por mes trabajado, las cuales se gozarán 
+                            de la siguiente manera: se pactaran de acuerdo a previa negociación con el jefe inmediato.
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA:</b>
+                             Además de los derechos que se establecen en las clausulas anteriores y de los que se desprenden del Programa Nacional de  Empleo por Horas, las partes convienen en que el TRABAJADOR tendrá derecho:&#160;
+                                a)	A la remuneración ordinaria por los servicios prestados.
+                                b)	Al pago de los derechos adquiridos de décimo tercer y décimo cuarto mes de salario.
+                                c)	A la compensación no habitual;
+                                d)	Al derecho preferente para ser contratado como permanente, teniendo  como primera opción el trabajador o trabajadora que se capacite o curse su educación primaria o secundaria.
+                                e)	A la libre sindicalización;
+                                f)	A los beneficios de los contratos colectivos, previa cotización al sindicato; 
+                                g)	A la seguridad social;
+                                h)	A la formación y capacitación; y,
+                                i)	A los derechos fundamentales establecidos en la Constitución de la República, Convenios Internacionales y Código del Trabajo.
+                                (Lo anterior sin perjuicios de los demás derechos que puedan pactar los contratantes o que voluntariamente otorgue el empleador).
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA PRIMERA:</b>
+                             En los casos que proceda, el día normal de descanso del TRABAJADOR será el DOMINGO, y los días feriados estipulados en el Código de Trabajo salvo pacto en contrario.
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA SEGUNDA:</b>&#160;&#160;&#160;
+                             Ambas partes convienen en que el <strong>TRABAJADOR</strong> goza de la protección de la Ley del Instituto Hondureño de Seguridad Social (IHSS), el Reglamento General de Medidas Preventivas de Accidentes de Trabajo,&#160;   Enfermedades Profesionales, y lo que dispone en estas materias el Código de Trabajo, en todo lo relativo a medidas de salud, higiene y seguridad ocupacional, riesgos profesionales, invalidez, vejez y muerte, beneficios por muerte natural, enfermedad y maternidad. A su vez, el <strong>EMPLEADOR</strong> se obliga a registrar al <strong>TRABAJADOR</strong> en el listado de seguimiento e inscripción en las respectivas oficinas del instituto Hondureño de Seguridad Social, para lo cual deberá pagar las tasas de cotización que establece la ley, sobre la base del salario mensual devengado.
+                            </p> 
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA TERCERA:&#160;&#160;&#160;&#160;&#160;   </b>
+                              Queda entendido que la fecha de terminación del servicio contratado pone término a la relación de trabajo, sin responsabilidad para las partes, entendiéndose que no cabe reclamo por el pago de décimo cuarto mes, décimo tercer mes y auxilio de cesantía salvo prueba de lo contrario. También es convenido, que en caso de despido injustificado dentro del término de duración del contrato de trabajo, el TRABAJADOR&#160;gozará de las indemnizaciones prescritas en el Artícu-&#160;&#160; lo 121 del Código de Trabajo.
+                                <strong>Así mismo el presente contrato podrá ser terminado antes del vencimiento por lo siguiente</strong>&#160;:
+                                •	Por cancelaciones anticipadas del contrato por parte del cliente.
+                                •	Por finalización de la obra para la que fue contratado.
+                            </p>   
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA CUARTA:&#160;&#160;&#160;&#160;     </b>
+                            El incumplimiento por parte del TRABAJADOR de las obligaciones y prohibiciones&#160;&#160;&#160;  establecidas en este contrato, directrices que por cualquier medio se giren 
+                            al trabajador para el correcto desempeño de &#160;su trabajo y satisfacción de los clientes de EL EMPLEADOR, Código de Trabajo y Reglamento Interno de Trabajo, dará lugar a la
+                            terminación anticipada del contrato sin responsabilidad del EMPLEADOR previo seguimiento del procedimiento legal establecido.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA QUINTA:&#160;&#160;&#160;&#160;   </b>
+                            EL EMPLEADOR se compromete a registrar el presente contrato de trabajo, mediante el&#160;&#160; depósito&#160; de un ejemplar original del mismo, en la Dirección General de Empleo, conforme lo dispuesto&#160;&#160; en el Reglamento de la  &#160;Ley de Empleo por Hora.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA SEXTA:&#160;&#160;&#160;&#160;   </b>
+                            En todo lo no previsto por el presente contrato, se estará a lo dispuesto en la Constitución de la República, Código de Trabajo, Convenios Internacionales del Trabajo, Decreto Legislativo No 354-2013, que contiene la&#160; Ley&#160;&#160;&#160;de Empleo por Hora y demás leyes de trabajo y previsión social.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA SEPTIMA:&#160;&#160;&#160;&#160;&#160;   </b>
+                              Cualquier controversia que se origine en el cumplimiento del presente contrato será resuelto por la Jurisdicción Laboral.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA OCTAVA:&#160;&#160;&#160;   </b>
+                            CONFIDENCIALIDAD: <b>a)</b> Cada parte reconoce que la observancia de confidencialidad con relación a cualquier secreto comercial o información confidencial, es de fundamental interés para el buen desarrollo de las operaciones del patrono. <b>b)</b> EL TRABAJADOR se obliga a tratar cada dato que constituya información confidencial o secre-&#160;&#160;&#160;&#160;&#160;&#160;       to comercial 
+                            del patrono como estrictamente confidencial y de exclusiva propiedad de este. Así mismo, se obliga a no usar, vender, prestar, alquilar, distribuir, dar, transferir, ceder, revelar, diseminar, reproducir, copiar, apropiarse o de cualquier  otra forma comunicar 
+                            directa o indirectamente ninguno de dichos datos a persona o entidad alguna, con ningún propósito 
+                            distinto de los expresamente contemplados en el presente contrato o en otros acuerdos escritos  
+                            firmados por las partes. Con relación a los datos que constituyen “información confidencial” o “Secretos Comerciales”, la obligación a que se sujeta 
+                            EL TRABAJADOR,&#160;&#160;          conforme lo dispuesto en la presente cláusula, regirá todo el tiempo que dure 
+                            el contrato y aún después de finalizado el mismo. <b>c)</b> Cada parte deberá realizar sus mejores esfuerzos a fin de asegurar la confidencialidad de la “Información Confidencial” y de los “Secretos Comerciales”, revelado o dados a conocer a sus empleados durante la vigencia del <b>CONTRATO</b>. Cada una de 
+                            las partes debe notificar a la otra en caso de que ella misma revele o se entere que terceros han revelado intencionalmente o sin intención “Secretos Comerciales” o “Información Confidencial”. Cada una de las partes deberá ayudar a la otra, en la medida en que sea necesario, a proteger sus derechos sobre cualquiera de sus “Secretos Comerciales” e “Información Confidencial”. <b>d)</b> Las partes serán respectivamente responsables de asegurar que todas las personas que tuvieron acceso a la “Información Confidencial” y 
+                            de los “Secretos Comerciales” conforme al presente contrato cumplan con el mismo.
+                            </p>
+                            <br/>
+                            <br/>
+                            
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA DECIMA NOVENA:</b>
+                             Queda establecido que la continuidad de este contrato 
+                            para EL TRABAJADOR está sujeta a la asignación de las 
+                            metas y directrices establecidas por nuestros clientes, las 
+                            cuales serán transmitidas por el jefe de cada área ya que 
+                            varían de acuerdo con la cartera y/o segmento determinado, caso 
+                            contrario se procederá a dar por finalizado.
+                            </p>
+                            <br/>
+                            <br/>
+                            <p class="justify" style="text-align: justify; !important"><b>CLAUSULA VIGESIMA:</b>
+                             Queda establecido que la actividad realizada por el trabajador es en base a asignación diaria de cola de trabajo, caso contrario el trabajador queda obligado a terminarla después de su horario sin que este genere pago de horas extras.
+                            En fe de lo anterior y para los efectos legales con siguientes se firma en triplicado el presente contrato de trabajo por horas y por tiempo limitado, a los&#160;<span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d')"/> días del mes de <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%B')"/> del <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>.
+                             </p>
+                            </p>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <p style="text-align: center;">
+                                <table>
+                                    <td style="width:40%; text-align: center;">
+                                        <strong>CRISTIE YASMIN VILLANUEVA ORDOÑEZ</strong><br/>
+                                        EL EMPLEADOR<br/>                             
+                                        Identidad: 0801-1987-06383<br/>			      
+                                    </td>
+                                    <td style="width:20%; text-align: center;">		      
+                                    </td>
+                                    <td style="width:40%; text-align: center;"> 
+                                        <strong><span t-esc="o.employee_id.name"/></strong><br/>
+                                        EL TRABAJADOR<br/>
+                                        Identidad: <strong><span t-esc="o.employee_id.identification_id"/></strong><br/>
+                                    </td>
+                                </table>
+                            </p>
+                            
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <report 
+            id="contrato_por_hora_print_confi"
+            model="hr.contract"
+            string="Contrato por hora"
+            name="contrato_generacion_ops.contrato_por_hora_view"
+            report_type="qweb-pdf"
+        />
+    </data>
+    <!-- <template id="ops_external_layout_inherit" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@class='footer o_standard_footer']" position="replace">
+
+        </xpath>
+    </template> -->
+    
+</odoo>
+

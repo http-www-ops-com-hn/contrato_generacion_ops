@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import contrato_emple
+from . import hr_contract
